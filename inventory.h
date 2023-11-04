@@ -1,11 +1,14 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
+const int CAP = 10;
+
 class Inventory
 {
 private:
     Doughnut *doughnuts;
-    int count = 0;
+    int count;
+    int capacity;
 
 public:
     // constructors
@@ -30,6 +33,7 @@ public:
     void writeToConsoleSelect(Doughnut *doughnuts, const int count);
     void doughnutType(int num, char doughnut[]);
     void saveAndQuit();
+    void growList();
 };
 
 #endif

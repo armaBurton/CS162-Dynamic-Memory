@@ -27,6 +27,9 @@ Inventory::Inventory(const Doughnut &aDoughnut)
 */
 bool Inventory::loadData()
 {
+    capacity = CAP;
+    doughnuts = new Doughnut[capacity];
+    count = 0;
     ifstream infile("voodoo.txt");
 
     if (!infile.is_open())
@@ -299,7 +302,17 @@ void Inventory::getUpper(char makeUpper[], int &makeCount, char targetCString[])
 */
 void Inventory::insertDoughnut(Doughnut &newDoughnut)
 {
-    cout << newDoughnut.getInventory() << endl;
+    if (count == capacity)
+    {
+        growList();
+    }
+
+    // cout << newDoughnut.getInventory() << " " << count << endl;
+
+    // if (count == 0)
+    // {
+    //     doughnuts[0] = new Doughnut(newDoughnut);
+    // }
     // int index = count,
     //     newCount = 0,
     //     oldCount = 0;
@@ -336,6 +349,23 @@ void Inventory::insertDoughnut(Doughnut &newDoughnut)
     //     doughnuts[index] = newDoughnut; // save new doughnut in to saved index
     // count++;
     // }
+}
+
+void Inventory::growList()
+{
+    capacity++;
+    char tempName[MAXCHAR];
+    char tempAddIns[MAXCHAR];
+
+    Doughnut *tempDoughnuts = new Doughnut[capacity];
+    for (int i = 0; i < count; i++)
+    {
+        tempDoughnuts[i] = doughnuts[i];
+    }
+
+    delete[] doughnuts;
+    doughnuts = tempDoughnuts;
+    tempDoughnuts = NULL;
 }
 
 int Inventory::getCount()

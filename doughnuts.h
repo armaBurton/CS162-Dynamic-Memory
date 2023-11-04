@@ -29,7 +29,9 @@ public:
 	Doughnut(int, char *, double, char *, int);
 
 	// copy constructor
-	Doughnut(const Doughnut &aDoughnut);
+	Doughnut(Doughnut &aDoughnut);
+
+	Doughnut &operator=(Doughnut &aDoughnut);
 
 	void setInventory(int);
 	void setName(char *);

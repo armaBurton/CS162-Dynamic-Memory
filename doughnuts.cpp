@@ -33,12 +33,38 @@ Doughnut::Doughnut( // new Item Constructor
 }
 
 // copy constructor
-Doughnut::Doughnut(const Doughnut &aDoughnut)
+Doughnut::Doughnut(Doughnut &aDoughnut)
 {
 	name = new char[strlen(aDoughnut.name) + 1];
 	addIns = new char[strlen(aDoughnut.addIns) + 1];
 
 	*this = aDoughnut;
+}
+
+Doughnut &Doughnut::operator=(Doughnut &aDoughnut)
+{
+	if (this == &aDoughnut)
+	{
+		return *this;
+	}
+
+	delete[] name;
+	delete[] addIns;
+
+	inventory = aDoughnut.getInventory();
+
+	name = new char[strlen(aDoughnut.name) + 1];
+	aDoughnut.getName(name);
+	// strcpy(name, aDoughnut.name)
+
+	price = aDoughnut.getPrice();
+
+	addIns = new char[strlen(aDoughnut.addIns) + 1];
+	aDoughnut.getAddIns(addIns);
+
+	type = aDoughnut.type;
+
+	return *this;
 }
 
 // sets private values
