@@ -8,14 +8,15 @@ Inventory::Inventory()
     count = 0;
 }
 
-Inventory::Inventory(Doughnut *newDoughnut, int newCount)
-{
-    // doughnuts = new
-}
+// Inventory::Inventory(Doughnut *newDoughnut, int newCount)
+// {
+//     // doughnuts = new
+// }
 
-Inventory::Inventory(const Doughnut &aDoughnut)
-{
-}
+// Inventory::Inventory(const Doughnut &aDoughnut)
+// {
+//     cout << "here" << endl;
+// }
 
 /*
     Name:   loadData()
@@ -27,9 +28,17 @@ Inventory::Inventory(const Doughnut &aDoughnut)
 */
 bool Inventory::loadData()
 {
-    capacity = CAP;
-    doughnuts = new Doughnut[capacity];
-    count = 0;
+    try
+    {
+        capacity = CAP;
+        doughnuts = new Doughnut[capacity];
+        count = 0;
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
     ifstream infile("voodoo.txt");
 
     if (!infile.is_open())
@@ -62,9 +71,9 @@ bool Inventory::loadData()
             priceBuffer,
             addInsBuffer,
             typeBuffer);
-        cout << "load data" << endl;
+        // cout << "load data" << endl;
         insertDoughnut(loadedDoughnut); // error is here!!!
-        cout << "loading\n";
+        // cout << "loading\n";
     }
 
     infile.close();
@@ -304,16 +313,45 @@ void Inventory::getUpper(char makeUpper[], int &makeCount, char targetCString[])
 */
 void Inventory::insertDoughnut(Doughnut &newDoughnut)
 {
-    cout << "insertDoughtnut\n";
+    char tempName[101], tempAddIns[101];
     if (count == capacity)
     {
         growList();
     }
+    Doughnut tempDoughnut;
+    tempDoughnut.setInventory(newDoughnut.getInventory());
+    newDoughnut.getName(tempName);
+    tempDoughnut.setName(tempName);
+    tempDoughnut.setPrice(newDoughnut.getPrice());
+    newDoughnut.getAddIns(tempAddIns);
+    tempDoughnut.setAddIns(tempAddIns);
+    tempDoughnut.setType(newDoughnut.getType());
+
+    cout << tempDoughnut.getInventory() << ";"
+         << tempName << ";"
+         << tempDoughnut.getPrice() << ";"
+         << tempAddIns << ";"
+         << tempDoughnut.getType() << endl;
 
     // cout << newDoughnut.getInventory() << " " << count << endl;
     // doughnuts[count] = newDoughnut;
-    count++;
-    cout << count << endl;
+
+    // if (count < capacity)
+    // {
+    //     doughnuts[count++] = newDoughnut;
+    //     cout << doughnuts[count - 1].getInventory() << endl;
+    //     // count++;
+    // }
+
+    // if (count == 0)
+    // {
+    //     cout << "count == 0" << endl;
+    //     cout << newDoughnut.getInventory() << endl;
+    //     doughnuts[count++] = newDoughnut;
+    //     cout << doughnuts[count].getInventory() << endl;
+    // }
+    // count++;
+    // cout << count << endl;
     // if (count == 0)
     // {
     //     doughnuts[0] = newDoughnut;

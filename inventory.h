@@ -10,13 +10,14 @@ private:
     Doughnut *doughnuts;
     int count;
     int capacity;
+    void growList();
 
 public:
     // constructors
     Inventory();
-    Inventory(Doughnut *, int);
+    // Inventory(Doughnut *, int);
     // copy constructor
-    Inventory(const Doughnut &aDoughnut);
+    // Inventory(const Doughnut &aDoughnut);
 
     void removeByIndex();
     void removeIndex(const int index);
@@ -34,7 +35,6 @@ public:
     void writeToConsoleSelect(Doughnut *doughnuts, const int count);
     void doughnutType(int num, char doughnut[]);
     void saveAndQuit();
-    void growList();
 };
 
 #endif
