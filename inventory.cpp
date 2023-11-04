@@ -329,8 +329,6 @@ void Inventory::insertDoughnut(Doughnut &newDoughnut)
 
     if (count == 0)
     {
-        cout << "count == 0" << endl;
-        // doughnuts[0] = tempDoughnut;
         doughnuts[0].setInventory(newDoughnut.getInventory());
         newDoughnut.getName(tempName);
         doughnuts[0].setName(tempName);
@@ -339,6 +337,12 @@ void Inventory::insertDoughnut(Doughnut &newDoughnut)
         doughnuts[0].setAddIns(tempAddIns);
         doughnuts[0].setType(newDoughnut.getType());
         count++;
+    }
+    else
+    {
+        char newUpper[MAXCHAR];
+        char newNameBuffer[MAXCHAR];
+        newDoughnut.getName(newNameBuffer);
     }
 
     // cout << newDoughnut.getInventory() << " " << count << endl;
