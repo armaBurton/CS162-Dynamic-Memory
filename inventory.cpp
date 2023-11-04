@@ -309,10 +309,10 @@ void Inventory::insertDoughnut(Doughnut &newDoughnut)
 
     // cout << newDoughnut.getInventory() << " " << count << endl;
 
-    // if (count == 0)
-    // {
-    //     doughnuts[0] = new Doughnut(newDoughnut);
-    // }
+    if (count == 0)
+    {
+        doughnuts[0] = newDoughnut;
+    }
     // int index = count,
     //     newCount = 0,
     //     oldCount = 0;
