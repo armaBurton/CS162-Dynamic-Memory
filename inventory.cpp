@@ -329,12 +329,16 @@ void Inventory::insertDoughnut(Doughnut &newDoughnut)
 
     if (count == 0)
     {
-        doughnuts[0] = tempDoughnut;
-        cout << doughnuts[0].getInventory() << ";"
-             << tempName << ";"
-             << doughnuts[0].getPrice() << ";"
-             << tempAddIns << ";"
-             << doughnuts[0].getType() << endl;
+        cout << "count == 0" << endl;
+        // doughnuts[0] = tempDoughnut;
+        doughnuts[0].setInventory(newDoughnut.getInventory());
+        newDoughnut.getName(tempName);
+        doughnuts[0].setName(tempName);
+        doughnuts[0].setPrice(newDoughnut.getPrice());
+        newDoughnut.getAddIns(tempAddIns);
+        doughnuts[0].setAddIns(tempAddIns);
+        doughnuts[0].setType(newDoughnut.getType());
+        count++;
     }
 
     // cout << newDoughnut.getInventory() << " " << count << endl;
