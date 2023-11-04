@@ -1,6 +1,22 @@
 #include "doughnuts.h"
 #include "inventory.h"
 
+// constructors
+Inventory::Inventory()
+{
+    doughnuts = nullptr;
+    count = 0;
+}
+
+Inventory::Inventory(Doughnut *newDoughnut, int newCount)
+{
+    // doughnuts = new
+}
+
+Inventory::Inventory(const Doughnut &aDoughnut)
+{
+}
+
 /*
     Name:   loadData()
     Desc:   This function reads data from a file and
@@ -27,7 +43,6 @@ bool Inventory::loadData()
     double priceBuffer;
     char nameBuffer[101];
     char addInsBuffer[101];
-    Doughnut loadedDoughnut;
 
     while (infile >> inventoryBuffer)
     {
@@ -38,11 +53,12 @@ bool Inventory::loadData()
         infile.getline(addInsBuffer, 101, ';');
         infile >> typeBuffer;
         infile.ignore(50, '\n');
-        loadedDoughnut.setInventory(inventoryBuffer);
-        loadedDoughnut.setName(nameBuffer);
-        loadedDoughnut.setPrice(priceBuffer);
-        loadedDoughnut.setAddIns(addInsBuffer);
-        loadedDoughnut.setType(typeBuffer);
+        Doughnut loadedDoughnut(
+            inventoryBuffer,
+            nameBuffer,
+            priceBuffer,
+            addInsBuffer,
+            typeBuffer);
         insertDoughnut(loadedDoughnut);
     }
 
@@ -281,44 +297,44 @@ void Inventory::getUpper(char makeUpper[], int &makeCount, char targetCString[])
     output: none
     return: none
 */
-void Inventory::insertDoughnut(Doughnut newDoughnut)
+void Inventory::insertDoughnut(const Doughnut &newDoughnut)
 {
-
     int index = count,
         newCount = 0,
         oldCount = 0;
-
     if (index == 0)
     {
-        doughnuts[0] = newDoughnut;
+
+        // doughnuts[0] = newDoughnut;
+        count++;
     }
     else
     {
-        char newUpper[101];
-        char newNameBuffer[101];
-        newDoughnut.getName(newNameBuffer); // get name of new doughnut
-        getUpper(newUpper, newCount, newNameBuffer);
-        for (int i = 0; i < count; i++)
-        {
-            char oldUpper[101];
-            char oldDoughnut[101];
-            doughnuts[i].getName(oldDoughnut); // get name of old doughnut
-            getUpper(oldUpper, oldCount, oldDoughnut);
-            if (strcmp(newUpper, oldUpper) < 0) // compare newdoughnut to old doughtnut
-            {
-                index = i; // if the compare returns -1
-                break;
-            }
-            oldCount = 0;
-        }
-        for (int i = count; i > index; i--)
-        {
-            doughnuts[i] = doughnuts[i - 1]; // shift all doughnuts after the i
-        }
+        //     char newUpper[101];
+        //     char newNameBuffer[101];
+        //     newDoughnut.getName(newNameBuffer); // get name of new doughnut
+        //     getUpper(newUpper, newCount, newNameBuffer);
+        //     for (int i = 0; i < count; i++)
+        //     {
+        //         char oldUpper[101];
+        //         char oldDoughnut[101];
+        //         doughnuts[i].getName(oldDoughnut); // get name of old doughnut
+        //         getUpper(oldUpper, oldCount, oldDoughnut);
+        //         if (strcmp(newUpper, oldUpper) < 0) // compare newdoughnut to old doughtnut
+        //         {
+        //             index = i; // if the compare returns -1
+        //             break;
+        //         }
+        //         oldCount = 0;
+        //     }
+        //     for (int i = count; i > index; i--)
+        //     {
+        //         doughnuts[i] = doughnuts[i - 1]; // shift all doughnuts after the i
+        //     }
 
-        doughnuts[index] = newDoughnut; // save new doughnut in to saved index
+        //     doughnuts[index] = newDoughnut; // save new doughnut in to saved index
+        count++;
     }
-    count++;
 }
 
 int Inventory::getCount()

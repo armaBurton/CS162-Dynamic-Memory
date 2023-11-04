@@ -12,27 +12,40 @@ using namespace std;
 #include <limits>
 #include <cctype>
 
+const int MAXCHAR = 101;
+
 class Doughnut
 {
 private:
 	int inventory = 0;
-	char name[101];
+	char *name;
 	double price;
-	char addIns[101];
+	char *addIns;
 	int type = 0;
 
 public:
+	// constructors
 	Doughnut();
-	void setInventory(int value);
-	void setName(char value[]);
-	void setPrice(double value);
-	void setAddIns(char value[]);
-	void setType(int value);
-	int getInventory() const;
-	void getName(char *namePointer) const;
-	double getPrice() const;
-	void getAddIns(char *addInsPointer) const;
-	int getType() const;
+	Doughnut(int, char *, double, char *, int);
+
+	// copy constructor
+	Doughnut(const Doughnut &aDoughnut);
+
+	void setInventory(int);
+	void setName(char *);
+	void setPrice(double);
+	void setAddIns(char *);
+	void setType(int);
+	int getInventory();
+	void getName(char *);
+	double getPrice();
+	void getAddIns(char *);
+	int getType();
+	// int getInventory() const;
+	// void getName(char *) const;
+	// double getPrice() const;
+	// void getAddIns(char *) const;
+	// int getType() const;
 };
 
 #endif
