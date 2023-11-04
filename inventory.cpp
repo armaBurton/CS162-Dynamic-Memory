@@ -311,7 +311,7 @@ void Inventory::insertDoughnut(Doughnut &newDoughnut)
 
     if (count == 0)
     {
-        doughnuts[0] = newDoughnut;
+        // doughnuts[0] = newDoughnut;
     }
     // int index = count,
     //     newCount = 0,
