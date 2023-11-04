@@ -1,7 +1,8 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
-const int CAP = 10;
+const int CAP = 15;
+const int GROW = 5;
 
 class Inventory
 {

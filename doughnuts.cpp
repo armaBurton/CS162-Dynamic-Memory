@@ -10,8 +10,10 @@
 Doughnut::Doughnut() // Default constructor
 {
 	inventory = 0;
+	name = new char[101];
 	strcpy(name, "No Name");
 	price = 0.0;
+	addIns = new char[101];
 	strcpy(addIns, "None");
 	type = 0;
 }
@@ -125,4 +127,10 @@ void Doughnut::getAddIns(char *addInsPointer)
 int Doughnut::getType()
 {
 	return type;
+}
+
+Doughnut::~Doughnut()
+{
+	delete[] name;
+	delete[] addIns;
 }

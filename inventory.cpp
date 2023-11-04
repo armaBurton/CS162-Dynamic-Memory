@@ -62,7 +62,9 @@ bool Inventory::loadData()
             priceBuffer,
             addInsBuffer,
             typeBuffer);
-        insertDoughnut(loadedDoughnut);
+        cout << "load data" << endl;
+        insertDoughnut(loadedDoughnut); // error is here!!!
+        cout << "loading\n";
     }
 
     infile.close();
@@ -302,25 +304,28 @@ void Inventory::getUpper(char makeUpper[], int &makeCount, char targetCString[])
 */
 void Inventory::insertDoughnut(Doughnut &newDoughnut)
 {
+    cout << "insertDoughtnut\n";
     if (count == capacity)
     {
         growList();
     }
 
     // cout << newDoughnut.getInventory() << " " << count << endl;
-
-    if (count == 0)
-    {
-        // doughnuts[0] = newDoughnut;
-    }
-    // int index = count,
-    //     newCount = 0,
-    //     oldCount = 0;
-    // if (index == 0)
+    // doughnuts[count] = newDoughnut;
+    count++;
+    cout << count << endl;
+    // if (count == 0)
     // {
-
-    // doughnuts[0] = newDoughnut;
+    //     doughnuts[0] = newDoughnut;
     //     count++;
+    //     cout << doughnuts[0].getInventory() << endl;
+    // }
+    // else
+    // {
+    //     char newUpper[MAXCHAR];
+    // char newNameBuffer[MAXCHAR];
+    // newDoughnut.getName(newNameBuffer);
+    // cout << newNameBuffer << endl;
     // }
     // else
     // {
@@ -353,7 +358,7 @@ void Inventory::insertDoughnut(Doughnut &newDoughnut)
 
 void Inventory::growList()
 {
-    capacity++;
+    capacity += GROW;
     char tempName[MAXCHAR];
     char tempAddIns[MAXCHAR];
 

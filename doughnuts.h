@@ -48,6 +48,8 @@ public:
 	// double getPrice() const;
 	// void getAddIns(char *) const;
 	// int getType() const;
+
+	~Doughnut();
 };
 
 #endif
