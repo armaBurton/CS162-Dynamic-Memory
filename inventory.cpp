@@ -342,7 +342,10 @@ void Inventory::insertDoughnut(Doughnut &newDoughnut)
     {
         char newUpper[MAXCHAR];
         char newNameBuffer[MAXCHAR];
+        int newCount = 0;
         newDoughnut.getName(newNameBuffer);
+        getUpper(newUpper, newCount, newNameBuffer);
+        cout << newUpper << endl;
     }
 
     // cout << newDoughnut.getInventory() << " " << count << endl;
