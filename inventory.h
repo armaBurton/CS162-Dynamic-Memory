@@ -19,7 +19,7 @@ public:
     void listByIngredient();
     void listByType();
     void getInt(char prompt[], const int min, const int max, int &value);
-    void insertDoughnut(const Doughnut &newDoughnut);
+    void insertDoughnut(Doughnut &newDoughnut);
     void getUpper(char makeUpper[], int &makeCount, char targetCString[]);
     void getCharacterString(char prompt[], const int max, char userPrompt[]);
     void getDouble(char prompt[], const int min, const int max, double &value);
