@@ -433,7 +433,7 @@ void Inventory::removeByIndex()
 */
 void Inventory::removeIndex(const int index)
 {
-    for (int i = index - 1; i < count; i++)
+    for (int i = index - 1; i < count - 1; i++)
     {
         doughnuts[i] = doughnuts[i + 1];
     }
