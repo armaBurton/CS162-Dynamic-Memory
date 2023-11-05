@@ -110,7 +110,7 @@ void menuOption(char *option, Inventory *inventory)
 		inventory->removeByIndex();
 		break;
 	case 'q':
-		// inventory->saveAndQuit();
+		inventory->saveAndQuit();
 		break;
 	default:
 		cout << "Invalid option!! Please try again!" << endl;
