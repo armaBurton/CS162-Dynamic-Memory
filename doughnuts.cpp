@@ -62,10 +62,6 @@ const Doughnut& Doughnut::operator=( Doughnut& aDoughnut)
 
 		return *this;
 	}
-	// name = new char[strlen(aDoughnut.name) + 1];
-	// addIns = new char[strlen(aDoughnut.addIns) + 1];
-
-	// *this = aDoughnut;
 }
 
 // sets private values

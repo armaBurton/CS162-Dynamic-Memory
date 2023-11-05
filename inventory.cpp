@@ -333,98 +333,60 @@ void Inventory::insertDoughnut(Doughnut &newDoughnut)
         growList();
     }
 
-    if (count == 0)
-    {
+    //if count is 0 set doughnuts[0] to *tempDoughnut
+    if (count == 0) {
         doughnuts[0] = *tempDoughnut;
+        delete tempDoughnut;
     } else {
-        
+        //get and capitalize the name of the new doughnut
+        char *newUpper = new char[MAXCHAR],
+             *newNameBuffer = new char[MAXCHAR];
+        newDoughnut.getName(newNameBuffer);
+        getUpper(newUpper, newCount, newNameBuffer);
+
+        for (int i = 0; i < count; i++){
+           //get and capitalize the name of the doughnut at [i]
+            char *oldUpper = new char[MAXCHAR],
+                 *oldNameBuffer = new char[MAXCHAR];
+            doughnuts[i].getName(oldNameBuffer);
+            getUpper(oldUpper, oldCount, oldNameBuffer);
+            cout << "N " << newUpper << " O " << oldUpper << endl;
+            //if newUpper is less than oldUpper index = i
+            // if oldUpper is equal to "NO NAME" index = i - 1
+            if(strcmp(oldUpper, "NO NAME") == 0){
+                index = i - 1;
+                break;
+            }
+            if(strcmp(newUpper, oldUpper) < 0){
+                index = i;
+                break;
+            }
+            delete [] oldUpper;
+            delete [] oldNameBuffer;
+            //reset count
+            oldCount = 0;
+        }
+
+        //sort
+        for (int i = count; i > index; i--){
+            char *tempName = new char[MAXCHAR],
+                 *tempAddIns = new char[MAXCHAR];
+            
+            doughnuts[i - 1].getName(tempName);
+            doughnuts[i - 1].getAddIns(tempAddIns);
+
+            doughnuts[i].setInventory(doughnuts[i - 1].getInventory());
+            doughnuts[i].setName(tempName);
+            doughnuts[i].setPrice(doughnuts[i - 1].getPrice());
+            doughnuts[i].setAddIns(tempAddIns);
+            doughnuts[i].setType(doughnuts[i - 1].getType());
+        }
+
+        doughnuts[index] = newDoughnut;
+
     }
-
-    // if (count == 0)
-    // {
-    //     doughnuts[0].setInventory(newDoughnut.getInventory());
-    //     newDoughnut.getName(tempName);
-    //     doughnuts[0].setName(tempName);
-    //     doughnuts[0].setPrice(newDoughnut.getPrice());
-    //     newDoughnut.getAddIns(tempAddIns);
-    //     doughnuts[0].setAddIns(tempAddIns);
-    //     doughnuts[0].setType(newDoughnut.getType());
-    //     cout << doughnuts[0].getInventory() << endl;
-    //     // count++;
-    // }
-    // else
-    // {
-    //     char newUpper[MAXCHAR];
-    //     char newNameBuffer[MAXCHAR];
-    //     Doughnut *prevDoughnut = new Doughnut();
-    //     newDoughnut.getName(newNameBuffer);          // get new doughnut name
-    //     getUpper(newUpper, newCount, newNameBuffer); // set new name to uppercase
-
-    //     for (int i = 0; i < count; i++)
-    //     {
-    //         index = 0;
-    //         char oldUpper[MAXCHAR];
-    //         char oldDoughnut[MAXCHAR];
-    //         doughnuts[i].getName(oldDoughnut);         // get old doughnut name
-    //         getUpper(oldUpper, oldCount, oldDoughnut); // set old name to uppercase
-    //         // if the old name is == to "NO NAME"
-    //         // set the index to i and break
-    //         // if (strcmp(oldUpper, "NO NAME") == 0)
-    //         // {
-    //         //     index = i + 1;
-    //         //     break;
-    //         // }
-    //         if (strcmp(newUpper, oldUpper) < 0)
-    //         {
-    //             index = i;
-    //             break;
-    //         }
-    //         // cout << "new " << newUpper << " old " << oldUpper << endl;
-    //         oldCount = 0;
-    //     }
-    //     // fix
-    //     for (int i = count; i > index; i--)
-    //     {
-
-    //         tempName = new char[MAXCHAR];
-    //         // cout << "count " << i << " index " << index << endl;
-    //         tempDoughnut->setInventory(doughnuts[i - 1].getInventory());
-    //         // cout << "tempDoughnut " << tempDoughnut->getInventory() << endl;
-    //         doughnuts[i - 1].getName(tempName);
-    //         cout << "loop " << tempName << endl;
-    //         tempDoughnut->setName(tempName);
-    //         tempDoughnut->setPrice(doughnuts[i - 1].getPrice());
-    //         doughnuts[i - 1].getAddIns(tempAddIns);
-    //         tempDoughnut->setAddIns(tempAddIns);
-    //         tempDoughnut->setType(doughnuts[i - 1].getType());
-    //         doughnuts[i].setInventory(tempDoughnut->getInventory());
-    //         delete[] tempName;
-    //     }
-
-    //     tempDoughnut->setInventory(newDoughnut.getInventory());
-    //     newDoughnut.getName(tempName);
-    //     tempDoughnut->setName(tempName);
-    //     tempDoughnut->setPrice(newDoughnut.getPrice());
-    //     newDoughnut.getAddIns(tempAddIns);
-    //     tempDoughnut->setAddIns(tempAddIns);
-    //     tempDoughnut->setType(newDoughnut.getType());
-    //     doughnuts[index].setInventory(newDoughnut.getInventory());
-    //     doughnuts[index].setName(tempName);
-    //     doughnuts[index].setPrice(newDoughnut.getPrice());
-    //     doughnuts[index].setAddIns(tempAddIns);
-    //     doughnuts[index].setType(newDoughnut.getType());
-
-    //     // cout << count << " ";
-    //     // count++;
-    //     // cout << count << endl;
-    // }
-
-    // for (int i = 0; i < count; i++)
-    // {
-    //     // cout << doughnuts[i].getInventory() << endl;
-    // }
     count++;
-    delete tempDoughnut;
+    // delete tempDoughnut;
     delete[] tempName;
     delete[] tempAddIns;
 }
