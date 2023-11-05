@@ -104,7 +104,7 @@ void menuOption(char *option, Inventory *inventory)
 		inventory->listByType();
 		break;
 	case 'i':
-		// inventory->listByIngredient();
+		inventory->listByIngredient();
 		break;
 	case 'r':
 		// inventory->removeByIndex();
