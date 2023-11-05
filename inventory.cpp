@@ -71,9 +71,7 @@ bool Inventory::loadData()
             priceBuffer,
             addInsBuffer,
             typeBuffer);
-        // cout << "load data" << endl;
-        insertDoughnut(loadedDoughnut); // error is here!!!
-        // cout << "loading\n";
+        insertDoughnut(loadedDoughnut);
     }
 
     infile.close();
@@ -144,7 +142,6 @@ void Inventory::writeToConsole()
 */
 void Inventory::addDoughnut()
 {
-    Doughnut tempDoughnut;
     char prompt[101];
     int inventory;
     char name[101];
@@ -163,11 +160,7 @@ void Inventory::addDoughnut()
     strcpy(prompt, "Enter the type: (0)Ring, (1)Round, (2)Bar, (3)Cannoli, (4)Others): ");
     getInt(prompt, 0, 4, type);
 
-    tempDoughnut.setInventory(inventory);
-    tempDoughnut.setName(name);
-    tempDoughnut.setPrice(price);
-    tempDoughnut.setAddIns(addIns);
-    tempDoughnut.setType(type);
+    Doughnut tempDoughnut(inventory, name, price, addIns, type);
     insertDoughnut(tempDoughnut);
 }
 
