@@ -95,7 +95,7 @@ void menuOption(char *option, Inventory *inventory)
 	switch (*option)
 	{
 	case 'a':
-		// inventory->addDoughnut();
+		inventory->addDoughnut();
 		break;
 	case 'l':
 		inventory->writeToConsole();

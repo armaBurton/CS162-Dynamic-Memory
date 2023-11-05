@@ -350,7 +350,6 @@ void Inventory::insertDoughnut(Doughnut &newDoughnut)
                  *oldNameBuffer = new char[MAXCHAR];
             doughnuts[i].getName(oldNameBuffer);
             getUpper(oldUpper, oldCount, oldNameBuffer);
-            cout << "N " << newUpper << " O " << oldUpper << endl;
             //if newUpper is less than oldUpper index = i
             // if oldUpper is equal to "NO NAME" index = i - 1
             if(strcmp(oldUpper, "NO NAME") == 0){
@@ -386,14 +385,13 @@ void Inventory::insertDoughnut(Doughnut &newDoughnut)
 
     }
     count++;
-    // delete tempDoughnut;
     delete[] tempName;
     delete[] tempAddIns;
 }
 
 void Inventory::growList()
 {
-    capacity += GROW;
+    capacity++;
     char tempName[MAXCHAR];
     char tempAddIns[MAXCHAR];
 
