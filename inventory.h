@@ -1,7 +1,7 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
-const int CAP = 15;
+const int CAP = 1;
 const int GROW = 5;
 
 class Inventory
@@ -35,6 +35,7 @@ public:
     void writeToConsoleSelect(Doughnut *doughnuts, const int count);
     void doughnutType(int num, char doughnut[]);
     void saveAndQuit();
+    ~Inventory();
 };
 
 #endif

@@ -31,7 +31,7 @@ public:
 	// copy constructor
 	Doughnut(Doughnut &aDoughnut);
 
-	Doughnut &operator=(Doughnut &aDoughnut);
+	const Doughnut& operator=( Doughnut &aDoughnut);
 
 	void setInventory(int);
 	void setName(char *);

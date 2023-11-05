@@ -43,30 +43,29 @@ Doughnut::Doughnut(Doughnut &aDoughnut)
 	*this = aDoughnut;
 }
 
-Doughnut &Doughnut::operator=(Doughnut &aDoughnut)
+const Doughnut& Doughnut::operator=( Doughnut& aDoughnut)
 {
 	if (this == &aDoughnut)
 	{
 		return *this;
 	}
+	else
+	{
+		char *tempName = new char[MAXCHAR], *tempAddIns = new char[MAXCHAR];
+		aDoughnut.getName(tempName);
+		aDoughnut.getAddIns(tempAddIns);
+		this->setInventory(aDoughnut.getInventory());
+		this->setName(tempName);
+		this->setPrice(aDoughnut.getPrice());
+		this->setAddIns(tempAddIns);
+		this->setType(aDoughnut.getType());
 
-	delete[] name;
-	delete[] addIns;
+		return *this;
+	}
+	// name = new char[strlen(aDoughnut.name) + 1];
+	// addIns = new char[strlen(aDoughnut.addIns) + 1];
 
-	inventory = aDoughnut.getInventory();
-
-	name = new char[strlen(aDoughnut.name) + 1];
-	aDoughnut.getName(name);
-	// strcpy(name, aDoughnut.name)
-
-	price = aDoughnut.getPrice();
-
-	addIns = new char[strlen(aDoughnut.addIns) + 1];
-	aDoughnut.getAddIns(addIns);
-
-	type = aDoughnut.type;
-
-	return *this;
+	// *this = aDoughnut;
 }
 
 // sets private values
